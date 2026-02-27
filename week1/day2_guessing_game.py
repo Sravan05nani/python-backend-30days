@@ -17,6 +17,7 @@ def get_closeness(diff):
         return "far away :("
     return "not even close!"
 
+
 def play_game():
 
     print("Choose Difficulty Level:")
@@ -26,35 +27,43 @@ def play_game():
 
     while True:
         choice = input("\nEnter choice (1, 2 or 3): ").strip()
-
         if choice in DIFFICULTIES:
             low, high, max_attempts, label = DIFFICULTIES[choice]
             break
-        else:
-            print("Invalid choice! Please enter only 1, 2 or 3.\n")
+        print("Invalid choice!")
 
     secret = random.randint(low, high)
     score = 1000
+    attempts = 0   
 
-    print(f"\nGuess a number between {low} and {high} in ({max_attempts} attempts)\n")
+    print(f"\nGuess a number between {low} and {high}")
+    print(f"You have {max_attempts} valid attempts\n")
 
-    for attempt in range(1, max_attempts + 1):
-        print("Attempts remaining:", max_attempts - attempt + 1)
+    while attempts < max_attempts:
+
+        print("Attempts remaining:", max_attempts - attempts)
+
+        user_input = input("Your Guess: ").strip()
+        if user_input == "":
+            print("Empty input! Enter a number.\n")
+            continue
 
         try:
-            guess = int(input("Your Guess: "))
+            guess = int(user_input)
         except ValueError:
-            print("Please enter a valid number!\n")
+            print("Invalid number!\n")
             continue
 
         if not (low <= guess <= high):
-            print(f"Out of range! Enter number between {low} and {high}\n")
+            print(f"Enter number between {low} and {high}\n")
             continue
 
-        score -= 50
+        attempts += 1
+        if attempts > 1:
+            score -= 50
 
         if guess == secret:
-            print(f"\nCorrect! You got it in {attempt} attempt(s)!")
+            print(f"\nCorrect! You got it in {attempts} attempt(s)!")
             print(f"Final Score: {score}")
             break
 
@@ -64,7 +73,7 @@ def play_game():
             else "Guess higher number than this"
         )
 
-        print(f"{get_closeness(abs(guess - secret))}")
+        print(get_closeness(abs(guess - secret)))
         print(direction + "\n")
 
     else:
@@ -73,13 +82,14 @@ def play_game():
 
     while True:
         again = input("\nPlay Again? (yes/no): ").lower().strip()
-        if again == "yes" or "y":
+        if again == "yes":
             play_game()
             break
-        elif again == "no" or "n":
+        elif again == "no":
             print("Thanks for playing...")
             break
         else:
-            print("Please enter 'yes' or 'no'.")
+            print("Enter yes or no.")
+
 
 play_game()
