@@ -48,7 +48,7 @@ def run():
         bar = progress_bar(result, max_result)
         line = f" {i:<4} {number} x {i:<10} {result:<8} {bar}"
         print(line)
-        time.sleep(0.1)
+        time.sleep(0.3)
 
     print(f"\n{'-'*45}")
     print(f"   Stats for {number}:")
