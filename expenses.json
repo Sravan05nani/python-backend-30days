@@ -1,0 +1,14 @@
+[
+    {
+        "desc": "food expense",
+        "category": "food",
+        "amount": 500.0,
+        "date": "2026-03-13"
+    },
+    {
+        "desc": "bought some clothes",
+        "category": "3",
+        "amount": 2000.0,
+        "date": "2026-03-13"
+    }
+]
