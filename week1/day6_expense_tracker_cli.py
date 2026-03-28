@@ -113,7 +113,6 @@ def spending_chart():
         bar = "█" * int(amount / 50)
         print(f"{cat:<10} {bar} ₹{amount}")
 
-
 def search_expense():
 
     keyword = input("Search keyword: ").lower()
